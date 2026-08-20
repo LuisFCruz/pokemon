@@ -5,7 +5,7 @@ import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
 import {
   PokemonSearch,
   PokemonTypeFilter,
-  PokemonPagination,
+  Pagination,
 } from "@/client/features";
 import {
   useGetPokemonList,
@@ -72,7 +72,7 @@ export const PokemonListPage: React.FC = () => {
 
       {/* Pagination Feature */}
       {data && (
-        <PokemonPagination
+        <Pagination
           currentPage={data.page}
           totalPages={data.totalPages}
           limit={limit}
