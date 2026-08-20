@@ -30,13 +30,29 @@ export const PokemonDetailModal: React.FC<PokemonDetailModalProps> = ({
   onClose,
 }) => {
   const [activeTab, setActiveTab] = useState<string>("info");
+  const [prevPokemonId, setPrevPokemonId] = useState<number | null>(pokemon?.id ?? null);
+  const [prevIsOpen, setPrevIsOpen] = useState<boolean>(isOpen);
+
+  // Sync state: reset activeTab to "info" when modal opens or selected pokemon changes
+  if (prevPokemonId !== (pokemon?.id ?? null) || prevIsOpen !== isOpen) {
+    setPrevPokemonId(pokemon?.id ?? null);
+    setPrevIsOpen(isOpen);
+    if (!isOpen || prevPokemonId !== (pokemon?.id ?? null)) {
+      setActiveTab("info");
+    }
+  }
+
+  const handleClose = () => {
+    setActiveTab("info");
+    onClose();
+  };
 
   if (!pokemon) return null;
 
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title={`#${String(pokemon.id).padStart(3, "0")} - ${pokemon.name}`}
     >
       <div className="flex flex-col items-center gap-3">
