@@ -55,12 +55,18 @@ export interface PokeApiPokemonDetailDTO {
   species: PokeApiNamedResource;
 }
 
+export interface PokeApiVarietyItem {
+  is_default: boolean;
+  pokemon: PokeApiNamedResource;
+}
+
 export interface PokeApiSpeciesDTO {
   id: number;
   name: string;
   evolution_chain: {
     url: string;
   };
+  varieties?: PokeApiVarietyItem[];
 }
 
 export interface PokeApiEvolutionNode {

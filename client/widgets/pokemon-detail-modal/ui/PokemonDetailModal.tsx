@@ -1,5 +1,7 @@
-import React from "react";
-import { Modal } from "@/client/shared/ui";
+"use client";
+
+import React, { useState } from "react";
+import { Modal, Tabs, TabItem } from "@/client/shared/ui";
 import {
   PokemonDomain,
   PokemonHeaderCard,
@@ -7,6 +9,7 @@ import {
   PokemonAbilities,
   PokemonBaseStats,
   PokemonEvolutionChain,
+  PokemonVariations,
 } from "@/client/entities/pokemon";
 
 export interface PokemonDetailModalProps {
@@ -15,11 +18,19 @@ export interface PokemonDetailModalProps {
   onClose: () => void;
 }
 
+const MODAL_TABS: TabItem[] = [
+  { id: "info", label: "Informações" },
+  { id: "evolutions", label: "Evoluções" },
+  { id: "variations", label: "Variações" },
+];
+
 export const PokemonDetailModal: React.FC<PokemonDetailModalProps> = ({
   pokemon,
   isOpen,
   onClose,
 }) => {
+  const [activeTab, setActiveTab] = useState<string>("info");
+
   if (!pokemon) return null;
 
   return (
@@ -29,7 +40,7 @@ export const PokemonDetailModal: React.FC<PokemonDetailModalProps> = ({
       title={`#${String(pokemon.id).padStart(3, "0")} - ${pokemon.name}`}
     >
       <div className="flex flex-col items-center gap-3">
-        {/* Top Row: Left Card (Image & Badges) + Right Column (Altura, Peso, Exp) */}
+        {/* Top Header Card + Physical Stats */}
         <div className="flex flex-row items-stretch gap-3 w-full">
           <PokemonHeaderCard pokemon={pokemon} />
           <PokemonPhysicalStats
@@ -39,14 +50,33 @@ export const PokemonDetailModal: React.FC<PokemonDetailModalProps> = ({
           />
         </div>
 
-        {/* Sub-componente: Habilidades */}
-        <PokemonAbilities abilities={pokemon.abilities} />
+        {/* Tabs Bar */}
+        <Tabs
+          tabs={MODAL_TABS}
+          activeTab={activeTab}
+          onChange={(tabId) => setActiveTab(tabId)}
+        />
 
-        {/* Sub-componente: Barras de Estatísticas Base */}
-        <PokemonBaseStats stats={pokemon.stats} />
+        {/* Tab Content */}
+        <div className="w-full">
+          {activeTab === "info" && (
+            <div className="space-y-3">
+              <PokemonAbilities abilities={pokemon.abilities} />
+              <PokemonBaseStats stats={pokemon.stats} />
+            </div>
+          )}
 
-        {/* Sub-componente: Cadeia de Evolução (Lazy loading via React Query) */}
-        <PokemonEvolutionChain currentPokemonId={pokemon.id} isOpen={isOpen} />
+          {activeTab === "evolutions" && (
+            <PokemonEvolutionChain
+              currentPokemonId={pokemon.id}
+              isOpen={isOpen}
+            />
+          )}
+
+          {activeTab === "variations" && (
+            <PokemonVariations currentPokemonId={pokemon.id} isOpen={isOpen} />
+          )}
+        </div>
       </div>
     </Modal>
   );

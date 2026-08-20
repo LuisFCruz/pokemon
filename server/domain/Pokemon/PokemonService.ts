@@ -78,6 +78,29 @@ export class PokemonService {
     return detailsDtoList.map((dto) => PokemonMapper.toDomain(dto));
   }
 
+  async getPokemonVariations(
+    idOrName: string | number,
+  ): Promise<PokemonDomain[]> {
+    if (!idOrName || String(idOrName).trim() === "") {
+      throw new InvalidGenerationError(idOrName);
+    }
+
+    const speciesDto = await this.pokemonGateway.getPokemonSpecies(idOrName);
+    if (!speciesDto.varieties || speciesDto.varieties.length === 0) {
+      const defaultDetail = await this.pokemonGateway.getPokemonDetail(idOrName);
+      return [PokemonMapper.toDomain(defaultDetail)];
+    }
+
+    const resources: PokeApiNamedResource[] = speciesDto.varieties.map(
+      (v) => v.pokemon,
+    );
+
+    const detailsDtoList =
+      await this.pokemonGateway.getPokemonDetailsInParallel(resources);
+
+    return detailsDtoList.map((dto) => PokemonMapper.toDomain(dto));
+  }
+
   private extractSpeciesSequence(
     node: PokeApiEvolutionNode,
   ): PokeApiNamedResource[] {

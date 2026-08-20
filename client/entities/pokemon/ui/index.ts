@@ -6,3 +6,4 @@ export * from "./pokemon-physical-stats/PokemonPhysicalStats";
 export * from "./pokemon-abilities/PokemonAbilities";
 export * from "./pokemon-base-stats/PokemonBaseStats";
 export * from "./pokemon-evolution-chain/PokemonEvolutionChain";
+export * from "./pokemon-variations/PokemonVariations";

@@ -13,4 +13,9 @@ export const pokemonApi = {
     const response = await axiosClient.get<{ evolutions: PokemonDomain[] }>(`/pokemon/${id}/evolutions`);
     return response.data;
   },
+
+  getPokemonVariations: async (id: number | string): Promise<{ variations: PokemonDomain[] }> => {
+    const response = await axiosClient.get<{ variations: PokemonDomain[] }>(`/pokemon/${id}/variations`);
+    return response.data;
+  },
 };

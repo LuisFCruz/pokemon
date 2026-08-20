@@ -3,6 +3,7 @@ import {
   PokeApiNamedResource,
   PokeApiPokemonDetailDTO,
   PokeApiPokemonListDTO,
+  PokeApiSpeciesDTO,
 } from "../../../ports/IPokemonGateway";
 import { PokemonListQueryParams } from "../../../domain/Pokemon/Pokemon.types";
 import { NotFoundError } from "../../../shared/errors/NotFoundError";
@@ -84,13 +85,19 @@ export class PokemonGatewayMock implements IPokemonGateway {
 
   async getPokemonSpecies(
     idOrName: string | number,
-  ): Promise<{ id: number; name: string; evolution_chain: { url: string } }> {
+  ): Promise<PokeApiSpeciesDTO> {
     return {
       id: 1,
       name: String(idOrName),
       evolution_chain: {
         url: "https://pokeapi.co/api/v2/evolution-chain/1/",
       },
+      varieties: [
+        {
+          is_default: true,
+          pokemon: { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
+        },
+      ],
     };
   }
 
