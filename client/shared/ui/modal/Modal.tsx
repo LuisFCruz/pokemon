@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/60 backdrop-blur-md transition-opacity"
@@ -40,11 +40,11 @@ export const Modal: React.FC<ModalProps> = ({
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl z-10 animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-md overflow-hidden rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl z-10 animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-100 dark:border-zinc-800">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 dark:border-zinc-800">
           {title ? (
-            <h3 className="text-lg font-bold text-zinc-900 dark:text-white capitalize">
+            <h3 className="text-base font-bold text-zinc-900 dark:text-white capitalize">
               {title}
             </h3>
           ) : (
@@ -52,11 +52,11 @@ export const Modal: React.FC<ModalProps> = ({
           )}
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-1 rounded-full text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             aria-label="Close modal"
           >
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ export const Modal: React.FC<ModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 max-h-[80vh] overflow-y-auto">{children}</div>
+        <div className="p-4 max-h-[85vh] overflow-y-auto">{children}</div>
       </div>
     </div>
   );

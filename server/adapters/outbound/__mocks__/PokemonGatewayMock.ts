@@ -81,4 +81,28 @@ export class PokemonGatewayMock implements IPokemonGateway {
   ): Promise<PokeApiPokemonDetailDTO[]> {
     return Promise.all(items.map((item) => this.getPokemonDetail(item.name)));
   }
+
+  async getPokemonSpecies(
+    idOrName: string | number,
+  ): Promise<{ id: number; name: string; evolution_chain: { url: string } }> {
+    return {
+      id: 1,
+      name: String(idOrName),
+      evolution_chain: {
+        url: "https://pokeapi.co/api/v2/evolution-chain/1/",
+      },
+    };
+  }
+
+  async getEvolutionChain(
+    _chainUrlOrId: string | number,
+  ): Promise<{ id: number; chain: { species: PokeApiNamedResource; evolves_to: [] } }> {
+    return {
+      id: 1,
+      chain: {
+        species: { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon-species/1/" },
+        evolves_to: [],
+      },
+    };
+  }
 }

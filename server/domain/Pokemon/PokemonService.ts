@@ -1,4 +1,8 @@
-import { IPokemonGateway } from "../../ports/IPokemonGateway";
+import {
+  IPokemonGateway,
+  PokeApiEvolutionNode,
+  PokeApiNamedResource,
+} from "../../ports/IPokemonGateway";
 import {
   PaginatedPokemonResponse,
   PokemonDomain,
@@ -53,5 +57,36 @@ export class PokemonService {
     }
     const detailDto = await this.pokemonGateway.getPokemonDetail(idOrName);
     return PokemonMapper.toDomain(detailDto);
+  }
+
+  async getPokemonEvolutions(
+    idOrName: string | number,
+  ): Promise<PokemonDomain[]> {
+    if (!idOrName || String(idOrName).trim() === "") {
+      throw new InvalidGenerationError(idOrName);
+    }
+
+    const speciesDto = await this.pokemonGateway.getPokemonSpecies(idOrName);
+    const chainDto = await this.pokemonGateway.getEvolutionChain(
+      speciesDto.evolution_chain.url,
+    );
+
+    const speciesList = this.extractSpeciesSequence(chainDto.chain);
+    const detailsDtoList =
+      await this.pokemonGateway.getPokemonDetailsInParallel(speciesList);
+
+    return detailsDtoList.map((dto) => PokemonMapper.toDomain(dto));
+  }
+
+  private extractSpeciesSequence(
+    node: PokeApiEvolutionNode,
+  ): PokeApiNamedResource[] {
+    const result: PokeApiNamedResource[] = [node.species];
+    if (node.evolves_to && node.evolves_to.length > 0) {
+      for (const subNode of node.evolves_to) {
+        result.push(...this.extractSpeciesSequence(subNode));
+      }
+    }
+    return result;
   }
 }

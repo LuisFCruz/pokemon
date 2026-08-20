@@ -1,11 +1,16 @@
 import { axiosClient } from "@/client/shared/api";
-import { PaginatedPokemonResponse, PokemonListQueryParams } from "../model/types";
+import { PaginatedPokemonResponse, PokemonDomain, PokemonListQueryParams } from "../model/types";
 
 export const pokemonApi = {
   getPokemonList: async (params: PokemonListQueryParams): Promise<PaginatedPokemonResponse> => {
     const response = await axiosClient.get<PaginatedPokemonResponse>("/pokemon", {
       params,
     });
+    return response.data;
+  },
+
+  getPokemonEvolutions: async (id: number | string): Promise<{ evolutions: PokemonDomain[] }> => {
+    const response = await axiosClient.get<{ evolutions: PokemonDomain[] }>(`/pokemon/${id}/evolutions`);
     return response.data;
   },
 };

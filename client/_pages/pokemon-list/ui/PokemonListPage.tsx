@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { PokemonGrid } from "@/client/widgets";
+import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
 import {
   PokemonSearch,
   PokemonTypeFilter,
@@ -9,7 +9,6 @@ import {
 } from "@/client/features";
 import {
   useGetPokemonList,
-  PokemonDetailModal,
   PokemonDomain,
 } from "@/client/entities/pokemon";
 
@@ -83,7 +82,7 @@ export const PokemonListPage: React.FC = () => {
         />
       )}
 
-      {/* Pokemon Detail Modal Entity UI */}
+      {/* Pokemon Detail Modal Widget */}
       <PokemonDetailModal
         pokemon={selectedPokemon}
         isOpen={Boolean(selectedPokemon)}

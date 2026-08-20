@@ -1,0 +1,1 @@
+export { PokemonPhysicalStats } from "./PokemonPhysicalStats";

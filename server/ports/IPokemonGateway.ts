@@ -1,4 +1,4 @@
-import { PokemonListQueryParams } from '../domain/Pokemon/Pokemon.types';
+import { PokemonListQueryParams } from "../domain/Pokemon/Pokemon.types";
 
 export interface PokeApiNamedResource {
   name: string;
@@ -32,7 +32,7 @@ export interface PokeApiPokemonStat {
 export interface PokeApiPokemonSprites {
   front_default: string | null;
   other?: {
-    'official-artwork'?: {
+    "official-artwork"?: {
       front_default?: string | null;
     };
     home?: {
@@ -55,8 +55,28 @@ export interface PokeApiPokemonDetailDTO {
   species: PokeApiNamedResource;
 }
 
+export interface PokeApiSpeciesDTO {
+  id: number;
+  name: string;
+  evolution_chain: {
+    url: string;
+  };
+}
+
+export interface PokeApiEvolutionNode {
+  species: PokeApiNamedResource;
+  evolves_to: PokeApiEvolutionNode[];
+}
+
+export interface PokeApiEvolutionChainDTO {
+  id: number;
+  chain: PokeApiEvolutionNode;
+}
+
 export interface IPokemonGateway {
   getPokemonList(params: PokemonListQueryParams): Promise<PokeApiPokemonListDTO>;
   getPokemonDetail(idOrName: string | number): Promise<PokeApiPokemonDetailDTO>;
   getPokemonDetailsInParallel(items: PokeApiNamedResource[]): Promise<PokeApiPokemonDetailDTO[]>;
+  getPokemonSpecies(idOrName: string | number): Promise<PokeApiSpeciesDTO>;
+  getEvolutionChain(chainUrlOrId: string | number): Promise<PokeApiEvolutionChainDTO>;
 }
