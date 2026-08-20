@@ -11,6 +11,7 @@ export const Header: React.FC = () => {
   const navItems = [
     { href: "/", label: "Pokédex", icon: "🐾" },
     { href: "/locations", label: "Localizações", icon: "🗺️" },
+    { href: "/generations", label: "Gerações", icon: "🏛️" },
   ];
 
   return (
