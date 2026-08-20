@@ -1,3 +1,5 @@
+import { PokemonDomain } from "@/client/entities/pokemon";
+
 export interface GenerationDomain {
   id: number;
   name: string;
@@ -6,6 +8,10 @@ export interface GenerationDomain {
   speciesCount: number;
   movesCount: number;
   versionGroups: string[];
+}
+
+export interface GenerationDetailDomain extends GenerationDomain {
+  pokemons: PokemonDomain[];
 }
 
 export interface GenerationListResponse {

@@ -20,7 +20,8 @@ export function createLocationService(baseUrl?: string): LocationService {
 // Factory to create GenerationService instances
 export function createGenerationService(baseUrl?: string): GenerationService {
   const pokeApiGenerationAdapter = new PokeApiGenerationAdapter(baseUrl);
-  return new GenerationService(pokeApiGenerationAdapter);
+  const pokeApiAdapter = new PokeApiAdapter(baseUrl);
+  return new GenerationService(pokeApiGenerationAdapter, pokeApiAdapter);
 }
 
 // Singleton instances for standard app usage
