@@ -1,9 +1,20 @@
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Badge } from "@/client/shared/ui";
 
 export const Header: React.FC = () => {
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/", label: "Pokédex", icon: "🐾" },
+    { href: "/locations", label: "Localizações", icon: "🗺️" },
+  ];
+
   return (
-    <header className="relative w-full py-8 mb-4 border-b border-zinc-200/60 dark:border-zinc-800/60">
+    <header className="relative w-full py-6 mb-4 border-b border-zinc-200/60 dark:border-zinc-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo & Title */}
         <div className="flex items-center gap-4 text-center md:text-left">
@@ -21,7 +32,10 @@ export const Header: React.FC = () => {
               <h1 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white tracking-tight">
                 Explorador Pokédex
               </h1>
-              <Badge variant="default" className="bg-red-500/10 text-red-600 dark:text-red-400 border-none">
+              <Badge
+                variant="default"
+                className="bg-red-500/10 text-red-600 dark:text-red-400 border-none"
+              >
                 Cliente FSD
               </Badge>
             </div>
@@ -30,6 +44,27 @@ export const Header: React.FC = () => {
             </p>
           </div>
         </div>
+
+        {/* Navigation Menu */}
+        <nav className="flex items-center gap-1.5 p-1.5 bg-zinc-100/80 dark:bg-zinc-800/60 rounded-2xl border border-zinc-200/80 dark:border-zinc-700/60 shadow-inner">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all ${
+                  isActive
+                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white shadow-md scale-105"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-zinc-800/40"
+                }`}
+              >
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </header>
   );
