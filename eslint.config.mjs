@@ -2,10 +2,12 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import boundaries from "eslint-plugin-boundaries";
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
+  ...tanstackQuery.configs["flat/recommended"],
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
   {
     plugins: {
@@ -16,7 +18,7 @@ const eslintConfig = defineConfig([
       "boundaries/elements": [
         {
           type: "shared",
-          pattern: "client/shared",
+          pattern: "client/shared/*",
         },
         {
           type: "entities",
@@ -41,6 +43,8 @@ const eslintConfig = defineConfig([
       ],
     },
     rules: {
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
