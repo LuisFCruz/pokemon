@@ -1,1 +1,1 @@
-export * from "./generation-card/GenerationCard";
+export * from "./GenerationCard";

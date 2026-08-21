@@ -1,1 +1,1 @@
-export * from "./location-card/LocationCard";
+export * from "./LocationCard";
