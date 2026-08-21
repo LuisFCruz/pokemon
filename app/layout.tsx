@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { QueryProvider } from "@/client/_app/providers";
 import "./globals.css";
 import { Header } from "@/client/widgets";
+import { AllProviders } from "@/client/_app/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
 
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 flex flex-col gap-6 mb-8">
-            <QueryProvider>{children}</QueryProvider>
+            <AllProviders>{children}</AllProviders>
           </main>
         </div>
       </body>
