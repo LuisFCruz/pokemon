@@ -1,16 +1,14 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
+
+import { useGetPokemonList, PokemonDomain } from "@/client/entities/pokemon";
 import {
   PokemonSearch,
   PokemonTypeFilter,
   Pagination,
 } from "@/client/features";
-import {
-  useGetPokemonList,
-  PokemonDomain,
-} from "@/client/entities/pokemon";
+import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
 
 export const PokemonListPage: React.FC = () => {
   const [page, setPage] = useState<number>(1);

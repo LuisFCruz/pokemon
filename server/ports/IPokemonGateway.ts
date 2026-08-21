@@ -80,9 +80,15 @@ export interface PokeApiEvolutionChainDTO {
 }
 
 export interface IPokemonGateway {
-  getPokemonList(params: PokemonListQueryParams): Promise<PokeApiPokemonListDTO>;
+  getPokemonList(
+    params: PokemonListQueryParams,
+  ): Promise<PokeApiPokemonListDTO>;
   getPokemonDetail(idOrName: string | number): Promise<PokeApiPokemonDetailDTO>;
-  getPokemonDetailsInParallel(items: PokeApiNamedResource[]): Promise<PokeApiPokemonDetailDTO[]>;
+  getPokemonDetailsInParallel(
+    items: PokeApiNamedResource[],
+  ): Promise<PokeApiPokemonDetailDTO[]>;
   getPokemonSpecies(idOrName: string | number): Promise<PokeApiSpeciesDTO>;
-  getEvolutionChain(chainUrlOrId: string | number): Promise<PokeApiEvolutionChainDTO>;
+  getEvolutionChain(
+    chainUrlOrId: string | number,
+  ): Promise<PokeApiEvolutionChainDTO>;
 }

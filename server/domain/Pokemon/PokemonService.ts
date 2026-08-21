@@ -3,13 +3,14 @@ import {
   PokeApiEvolutionNode,
   PokeApiNamedResource,
 } from "../../ports/IPokemonGateway";
+
+import { InvalidGenerationError } from "./Pokemon.errors";
+import { PokemonMapper } from "./Pokemon.mapper";
 import {
   PaginatedPokemonResponse,
   PokemonDomain,
   PokemonListQueryParams,
 } from "./Pokemon.types";
-import { PokemonMapper } from "./Pokemon.mapper";
-import { InvalidGenerationError } from "./Pokemon.errors";
 
 export class PokemonService {
   constructor(private readonly pokemonGateway: IPokemonGateway) {}
@@ -87,7 +88,8 @@ export class PokemonService {
 
     const speciesDto = await this.pokemonGateway.getPokemonSpecies(idOrName);
     if (!speciesDto.varieties || speciesDto.varieties.length === 0) {
-      const defaultDetail = await this.pokemonGateway.getPokemonDetail(idOrName);
+      const defaultDetail =
+        await this.pokemonGateway.getPokemonDetail(idOrName);
       return [PokemonMapper.toDomain(defaultDetail)];
     }
 

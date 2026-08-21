@@ -1,4 +1,5 @@
 import { PokeApiPokemonDetailDTO } from "../../ports/IPokemonGateway";
+
 import { PokemonDomain, PokemonStats, PokemonType } from "./Pokemon.types";
 
 export class PokemonMapper {

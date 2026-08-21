@@ -1,14 +1,18 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
+import { getTypeStyle } from "@/client/shared/lib";
+
 import { PokemonDomain } from "../../model/types";
 import { PokemonTypeBadge } from "../pokemon-type-badge/PokemonTypeBadge";
-import { getTypeStyle } from "@/client/shared/lib";
 
 export interface PokemonHeaderCardProps {
   pokemon: PokemonDomain;
 }
 
-export const PokemonHeaderCard: React.FC<PokemonHeaderCardProps> = ({ pokemon }) => {
+export const PokemonHeaderCard: React.FC<PokemonHeaderCardProps> = ({
+  pokemon,
+}) => {
   const typeStyle = getTypeStyle(pokemon.dominantType);
 
   return (

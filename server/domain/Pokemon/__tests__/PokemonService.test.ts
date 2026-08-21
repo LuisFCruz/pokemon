@@ -1,8 +1,9 @@
-import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { PokemonService } from "../PokemonService";
+import { test, describe } from "node:test";
+
 import { PokemonGatewayMock } from "../../../adapters/outbound/__mocks__/PokemonGatewayMock";
 import { NotFoundError } from "../../../shared/errors/NotFoundError";
+import { PokemonService } from "../PokemonService";
 
 describe("PokemonService", () => {
   test("should return paginated pokemon list with detailed pokemon domain data", async () => {

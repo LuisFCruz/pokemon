@@ -1,8 +1,10 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
+import { getTypeStyle } from "@/client/shared/lib";
+
 import { PokemonDomain } from "../../model/types";
 import { PokemonTypeBadge } from "../pokemon-type-badge/PokemonTypeBadge";
-import { getTypeStyle } from "@/client/shared/lib";
 
 export interface PokemonCardProps {
   pokemon: PokemonDomain;
@@ -10,7 +12,11 @@ export interface PokemonCardProps {
   onClick?: (pokemon: PokemonDomain) => void;
 }
 
-export const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, priority = false, onClick }) => {
+export const PokemonCard: React.FC<PokemonCardProps> = ({
+  pokemon,
+  priority = false,
+  onClick,
+}) => {
   const typeStyle = getTypeStyle(pokemon.dominantType);
 
   const formattedId = `#${String(pokemon.id).padStart(3, "0")}`;

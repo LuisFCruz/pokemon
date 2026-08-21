@@ -1,4 +1,5 @@
 import React from "react";
+
 import { GenerationDetailDomain } from "@/client/entities/generation";
 import { Badge } from "@/client/shared/ui";
 
@@ -30,7 +31,8 @@ export const GenerationHeroBanner: React.FC<GenerationHeroBannerProps> = ({
             {generation.name.replace("-", " ")}
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">
-            Explorando os {generation.speciesCount} Pokémons e {generation.movesCount} novos golpes introduzidos nesta geração.
+            Explorando os {generation.speciesCount} Pokémons e{" "}
+            {generation.movesCount} novos golpes introduzidos nesta geração.
           </p>
         </div>
 

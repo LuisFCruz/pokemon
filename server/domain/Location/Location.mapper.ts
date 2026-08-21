@@ -1,8 +1,12 @@
 import { PokeApiLocationDetailDTO } from "../../ports/ILocationGateway";
+
 import { LocationDomain } from "./Location.types";
 
 export class LocationMapper {
-  static toDomain(dto: PokeApiLocationDetailDTO, fallbackId?: number): LocationDomain {
+  static toDomain(
+    dto: PokeApiLocationDetailDTO,
+    fallbackId?: number,
+  ): LocationDomain {
     const gameGenerations = Array.from(
       new Set(
         (dto.game_indices || [])

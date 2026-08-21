@@ -1,12 +1,12 @@
+import { LocationListQueryParams } from "../../domain/Location/Location.types";
 import {
   ILocationGateway,
   PokeApiLocationDetailDTO,
   PokeApiLocationListDTO,
 } from "../../ports/ILocationGateway";
 import { PokeApiNamedResource } from "../../ports/IPokemonGateway";
-import { LocationListQueryParams } from "../../domain/Location/Location.types";
-import { NotFoundError } from "../../shared/errors/NotFoundError";
 import { GatewayError } from "../../shared/errors/GatewayError";
+import { NotFoundError } from "../../shared/errors/NotFoundError";
 
 export class PokeApiLocationAdapter implements ILocationGateway {
   private readonly baseUrl: string;

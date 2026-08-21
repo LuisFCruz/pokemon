@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { generationApi } from "../api/generationApi";
+
 import { GenerationDetailDomain } from "./types";
 
 export function useGetGenerationDetail(idOrName: string | number) {

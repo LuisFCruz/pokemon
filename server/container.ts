@@ -1,9 +1,9 @@
 import { PokeApiAdapter } from "./adapters/outbound/PokeApiAdapter";
-import { PokeApiLocationAdapter } from "./adapters/outbound/PokeApiLocationAdapter";
 import { PokeApiGenerationAdapter } from "./adapters/outbound/PokeApiGenerationAdapter";
-import { PokemonService } from "./domain/Pokemon/PokemonService";
-import { LocationService } from "./domain/Location/LocationService";
+import { PokeApiLocationAdapter } from "./adapters/outbound/PokeApiLocationAdapter";
 import { GenerationService } from "./domain/Generation/GenerationService";
+import { LocationService } from "./domain/Location/LocationService";
+import { PokemonService } from "./domain/Pokemon/PokemonService";
 
 // Factory to create PokemonService instances
 export function createPokemonService(baseUrl?: string): PokemonService {

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { generationService } from "@/server/container";
 
 export async function GET(
@@ -13,7 +14,10 @@ export async function GET(
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: `Falha ao buscar detalhes da geração '${id}'`, details: message },
+      {
+        error: `Falha ao buscar detalhes da geração '${id}'`,
+        details: message,
+      },
       { status: 500 },
     );
   }

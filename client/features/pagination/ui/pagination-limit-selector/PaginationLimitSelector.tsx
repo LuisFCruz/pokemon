@@ -7,12 +7,9 @@ export interface PaginationLimitSelectorProps {
   options?: number[];
 }
 
-export const PaginationLimitSelector: React.FC<PaginationLimitSelectorProps> = ({
-  limit,
-  onLimitChange,
-  isLoading = false,
-  options = [10, 20, 50],
-}) => {
+export const PaginationLimitSelector: React.FC<
+  PaginationLimitSelectorProps
+> = ({ limit, onLimitChange, isLoading = false, options = [10, 20, 50] }) => {
   return (
     <div className="flex items-center gap-2">
       <select

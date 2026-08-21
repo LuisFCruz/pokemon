@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
+
 import { Badge } from "@/client/shared/ui";
 
 export const Header: React.FC = () => {
@@ -41,7 +42,8 @@ export const Header: React.FC = () => {
               </Badge>
             </div>
             <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-              Frontend em arquitetura Feature-Sliced Design alimentado por TanStack Query & Axios
+              Frontend em arquitetura Feature-Sliced Design alimentado por
+              TanStack Query & Axios
             </p>
           </div>
         </div>

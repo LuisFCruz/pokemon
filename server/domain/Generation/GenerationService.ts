@@ -1,6 +1,7 @@
 import { IGenerationGateway } from "../../ports/IGenerationGateway";
 import { IPokemonGateway } from "../../ports/IPokemonGateway";
 import { PokemonMapper } from "../Pokemon/Pokemon.mapper";
+
 import { GenerationMapper } from "./Generation.mapper";
 import {
   GenerationDetailDomain,
@@ -18,7 +19,9 @@ export class GenerationService {
     const listDTO = await this.generationGateway.getGenerationList();
 
     const detailDTOs =
-      await this.generationGateway.getGenerationDetailsInParallel(listDTO.results);
+      await this.generationGateway.getGenerationDetailsInParallel(
+        listDTO.results,
+      );
 
     // Sort by ID ascending
     const sortedDTOs = detailDTOs.sort((a, b) => a.id - b.id);
@@ -33,7 +36,9 @@ export class GenerationService {
     };
   }
 
-  async getGenerationDetail(idOrName: string | number): Promise<GenerationDomain> {
+  async getGenerationDetail(
+    idOrName: string | number,
+  ): Promise<GenerationDomain> {
     const dto = await this.generationGateway.getGenerationDetail(idOrName);
     return GenerationMapper.toDomain(dto);
   }
@@ -51,7 +56,7 @@ export class GenerationService {
     if (this.pokemonGateway && generationDTO.pokemon_species.length > 0) {
       // Sort species by ID if possible
       const speciesList = [...generationDTO.pokemon_species];
-      
+
       const pokemonDTOs =
         await this.pokemonGateway.getPokemonDetailsInParallel(speciesList);
 

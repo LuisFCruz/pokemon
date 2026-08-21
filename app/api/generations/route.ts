@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { generationService } from "@/server/container";
 
 export async function GET() {

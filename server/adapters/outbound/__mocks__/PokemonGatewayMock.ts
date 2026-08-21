@@ -1,3 +1,4 @@
+import { PokemonListQueryParams } from "../../../domain/Pokemon/Pokemon.types";
 import {
   IPokemonGateway,
   PokeApiNamedResource,
@@ -5,7 +6,6 @@ import {
   PokeApiPokemonListDTO,
   PokeApiSpeciesDTO,
 } from "../../../ports/IPokemonGateway";
-import { PokemonListQueryParams } from "../../../domain/Pokemon/Pokemon.types";
 import { NotFoundError } from "../../../shared/errors/NotFoundError";
 
 export class PokemonGatewayMock implements IPokemonGateway {
@@ -95,19 +95,26 @@ export class PokemonGatewayMock implements IPokemonGateway {
       varieties: [
         {
           is_default: true,
-          pokemon: { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
+          pokemon: {
+            name: "bulbasaur",
+            url: "https://pokeapi.co/api/v2/pokemon/1/",
+          },
         },
       ],
     };
   }
 
-  async getEvolutionChain(
-    _chainUrlOrId: string | number,
-  ): Promise<{ id: number; chain: { species: PokeApiNamedResource; evolves_to: [] } }> {
+  async getEvolutionChain(_chainUrlOrId: string | number): Promise<{
+    id: number;
+    chain: { species: PokeApiNamedResource; evolves_to: [] };
+  }> {
     return {
       id: 1,
       chain: {
-        species: { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon-species/1/" },
+        species: {
+          name: "bulbasaur",
+          url: "https://pokeapi.co/api/v2/pokemon-species/1/",
+        },
         evolves_to: [],
       },
     };

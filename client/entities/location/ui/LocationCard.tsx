@@ -1,7 +1,9 @@
 import React from "react";
-import { LocationDomain } from "../model/types";
-import { REGION_THEMES, DEFAULT_REGION_THEME } from "../model/locationThemes";
+
 import { Badge } from "@/client/shared/ui";
+
+import { REGION_THEMES, DEFAULT_REGION_THEME } from "../model/locationThemes";
+import { LocationDomain } from "../model/types";
 
 export interface LocationCardProps {
   location: LocationDomain;

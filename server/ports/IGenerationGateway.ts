@@ -19,6 +19,10 @@ export interface PokeApiGenerationDetailDTO {
 
 export interface IGenerationGateway {
   getGenerationList(): Promise<PokeApiGenerationListDTO>;
-  getGenerationDetail(idOrName: string | number): Promise<PokeApiGenerationDetailDTO>;
-  getGenerationDetailsInParallel(items: PokeApiNamedResource[]): Promise<PokeApiGenerationDetailDTO[]>;
+  getGenerationDetail(
+    idOrName: string | number,
+  ): Promise<PokeApiGenerationDetailDTO>;
+  getGenerationDetailsInParallel(
+    items: PokeApiNamedResource[],
+  ): Promise<PokeApiGenerationDetailDTO[]>;
 }

@@ -32,7 +32,8 @@ export const POKEMON_TYPE_COLORS: Record<string, TypeStyle> = {
     bg: "bg-yellow-500/10 dark:bg-yellow-500/20",
     text: "text-amber-600 dark:text-amber-400",
     border: "border-amber-500/30",
-    badgeBg: "bg-gradient-to-r from-amber-400 to-yellow-500 text-zinc-900 font-semibold",
+    badgeBg:
+      "bg-gradient-to-r from-amber-400 to-yellow-500 text-zinc-900 font-semibold",
     gradient: "from-amber-400/20 via-yellow-500/10 to-transparent",
   },
   psychic: {
@@ -46,7 +47,8 @@ export const POKEMON_TYPE_COLORS: Record<string, TypeStyle> = {
     bg: "bg-cyan-400/10 dark:bg-cyan-400/20",
     text: "text-cyan-600 dark:text-cyan-300",
     border: "border-cyan-400/30",
-    badgeBg: "bg-gradient-to-r from-cyan-400 to-sky-400 text-zinc-900 font-semibold",
+    badgeBg:
+      "bg-gradient-to-r from-cyan-400 to-sky-400 text-zinc-900 font-semibold",
     gradient: "from-cyan-400/20 via-sky-400/10 to-transparent",
   },
   dragon: {
@@ -67,7 +69,8 @@ export const POKEMON_TYPE_COLORS: Record<string, TypeStyle> = {
     bg: "bg-fuchsia-400/10 dark:bg-fuchsia-400/20",
     text: "text-fuchsia-600 dark:text-fuchsia-300",
     border: "border-fuchsia-400/30",
-    badgeBg: "bg-gradient-to-r from-fuchsia-400 to-pink-400 text-zinc-900 font-semibold",
+    badgeBg:
+      "bg-gradient-to-r from-fuchsia-400 to-pink-400 text-zinc-900 font-semibold",
     gradient: "from-fuchsia-400/20 via-pink-400/10 to-transparent",
   },
   normal: {

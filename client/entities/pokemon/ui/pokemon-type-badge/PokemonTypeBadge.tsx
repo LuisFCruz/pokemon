@@ -1,4 +1,5 @@
 import React from "react";
+
 import { getTypeStyle } from "@/client/shared/lib";
 
 export interface PokemonTypeBadgeProps {

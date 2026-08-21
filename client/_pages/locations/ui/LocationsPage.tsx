@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+
 import { useGetLocationList, LocationCard } from "@/client/entities/location";
 import { Pagination } from "@/client/features";
 import { Spinner, Button } from "@/client/shared/ui";

@@ -1,8 +1,10 @@
-import React from "react";
 import Link from "next/link";
-import { GenerationDomain } from "../model/types";
-import { GEN_THEMES, DEFAULT_GEN_THEME } from "../model/generationThemes";
+import React from "react";
+
 import { Badge } from "@/client/shared/ui";
+
+import { GEN_THEMES, DEFAULT_GEN_THEME } from "../model/generationThemes";
+import { GenerationDomain } from "../model/types";
 
 export interface GenerationCardProps {
   generation: GenerationDomain;

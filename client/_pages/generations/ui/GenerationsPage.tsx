@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { useGetGenerationList, GenerationCard } from "@/client/entities/generation";
+
+import {
+  useGetGenerationList,
+  GenerationCard,
+} from "@/client/entities/generation";
 import { Spinner, Button } from "@/client/shared/ui";
 
 export const GenerationsPage: React.FC = () => {

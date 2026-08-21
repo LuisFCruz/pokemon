@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Modal, Tabs, TabItem } from "@/client/shared/ui";
+
 import {
   PokemonDomain,
   PokemonHeaderCard,
@@ -11,6 +11,7 @@ import {
   PokemonEvolutionChain,
   PokemonVariations,
 } from "@/client/entities/pokemon";
+import { Modal, Tabs, TabItem } from "@/client/shared/ui";
 
 export interface PokemonDetailModalProps {
   pokemon: PokemonDomain | null;
@@ -30,7 +31,9 @@ export const PokemonDetailModal: React.FC<PokemonDetailModalProps> = ({
   onClose,
 }) => {
   const [activeTab, setActiveTab] = useState<string>("info");
-  const [prevPokemonId, setPrevPokemonId] = useState<number | null>(pokemon?.id ?? null);
+  const [prevPokemonId, setPrevPokemonId] = useState<number | null>(
+    pokemon?.id ?? null,
+  );
   const [prevIsOpen, setPrevIsOpen] = useState<boolean>(isOpen);
 
   // Sync state: reset activeTab to "info" when modal opens or selected pokemon changes

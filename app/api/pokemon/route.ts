@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { pokemonService } from "@/server/container";
 import { NotFoundError } from "@/server/shared/errors/NotFoundError";
 

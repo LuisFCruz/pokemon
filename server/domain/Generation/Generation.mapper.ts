@@ -1,4 +1,5 @@
 import { PokeApiGenerationDetailDTO } from "../../ports/IGenerationGateway";
+
 import { GenerationDomain } from "./Generation.types";
 
 const ROMAN_NUMERALS: Record<string, string> = {
@@ -14,9 +15,15 @@ const ROMAN_NUMERALS: Record<string, string> = {
 };
 
 export class GenerationMapper {
-  static toDomain(dto: PokeApiGenerationDetailDTO, fallbackId?: number): GenerationDomain {
-    const romanName = ROMAN_NUMERALS[dto.name.toLowerCase()] || dto.name.toUpperCase();
-    const versionGroups = (dto.version_groups || []).map((vg) => vg.name.replace(/-/g, " "));
+  static toDomain(
+    dto: PokeApiGenerationDetailDTO,
+    fallbackId?: number,
+  ): GenerationDomain {
+    const romanName =
+      ROMAN_NUMERALS[dto.name.toLowerCase()] || dto.name.toUpperCase();
+    const versionGroups = (dto.version_groups || []).map((vg) =>
+      vg.name.replace(/-/g, " "),
+    );
 
     return {
       id: dto.id || fallbackId || 0,

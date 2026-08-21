@@ -1,13 +1,20 @@
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import boundaries from "eslint-plugin-boundaries";
-import tanstackQuery from "@tanstack/eslint-plugin-query";
+import importPlugin from "eslint-plugin-import-x";
+import jestPlugin from "eslint-plugin-jest";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   ...tanstackQuery.configs["flat/recommended"],
+  eslintPluginPrettierRecommended,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.typescript,
+
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
   {
     plugins: {
@@ -108,6 +115,53 @@ const eslintConfig = defineConfig([
               ],
             },
           ],
+        },
+      ],
+
+      //Import
+      "import-x/no-duplicates": ["error"],
+      "import-x/newline-after-import": ["error", { count: 1 }],
+      "import-x/no-named-as-default-member": "off",
+      "import-x/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "index",
+            "object",
+            "type",
+            "parent",
+            "sibling",
+          ],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+    },
+  },
+  // Specific configuration for test files
+  {
+    files: [
+      "/client/**/*.test.{js,jsx,ts,tsx}",
+      "/client/**/*.spec.{js,jsx,ts,tsx}",
+    ],
+    plugins: {
+      jest: jestPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...jestPlugin.environments.globals.globals,
+      },
+    },
+    rules: {
+      ...jestPlugin.configs.recommended.rules,
+      "jest/consistent-test-it": ["error", { fn: "test" }],
+      "jest/max-nested-describe": [
+        "warn",
+        {
+          max: 0,
         },
       ],
     },

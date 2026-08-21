@@ -1,5 +1,10 @@
 import React from "react";
-import { PokemonCard, PokemonSkeleton, PokemonDomain } from "@/client/entities/pokemon";
+
+import {
+  PokemonCard,
+  PokemonSkeleton,
+  PokemonDomain,
+} from "@/client/entities/pokemon";
 import { Button } from "@/client/shared/ui";
 
 export interface PokemonGridProps {
@@ -39,7 +44,8 @@ export const PokemonGrid: React.FC<PokemonGridProps> = ({
           Falha ao carregar Pokémons
         </h3>
         <p className="text-sm text-rose-600 dark:text-rose-400 mb-4 max-w-md">
-          {errorMessage || "Ocorreu um erro inesperado ao buscar a lista de Pokémons."}
+          {errorMessage ||
+            "Ocorreu um erro inesperado ao buscar a lista de Pokémons."}
         </p>
         {onRetry && (
           <Button variant="primary" onClick={onRetry}>

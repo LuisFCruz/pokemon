@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Input } from "@/client/shared/ui";
 
 export interface PokemonSearchProps {
@@ -6,7 +7,10 @@ export interface PokemonSearchProps {
   onChange: (val: string) => void;
 }
 
-export const PokemonSearch: React.FC<PokemonSearchProps> = ({ value, onChange }) => {
+export const PokemonSearch: React.FC<PokemonSearchProps> = ({
+  value,
+  onChange,
+}) => {
   return (
     <div className="w-full max-w-md">
       <Input

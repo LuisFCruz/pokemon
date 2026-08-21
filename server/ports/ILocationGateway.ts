@@ -1,5 +1,6 @@
-import { PokeApiNamedResource } from "./IPokemonGateway";
 import { LocationListQueryParams } from "../domain/Location/Location.types";
+
+import { PokeApiNamedResource } from "./IPokemonGateway";
 
 export interface PokeApiLocationListDTO {
   count: number;
@@ -20,7 +21,13 @@ export interface PokeApiLocationDetailDTO {
 }
 
 export interface ILocationGateway {
-  getLocationList(params: LocationListQueryParams): Promise<PokeApiLocationListDTO>;
-  getLocationDetail(idOrName: string | number): Promise<PokeApiLocationDetailDTO>;
-  getLocationDetailsInParallel(items: PokeApiNamedResource[]): Promise<PokeApiLocationDetailDTO[]>;
+  getLocationList(
+    params: LocationListQueryParams,
+  ): Promise<PokeApiLocationListDTO>;
+  getLocationDetail(
+    idOrName: string | number,
+  ): Promise<PokeApiLocationDetailDTO>;
+  getLocationDetailsInParallel(
+    items: PokeApiNamedResource[],
+  ): Promise<PokeApiLocationDetailDTO[]>;
 }

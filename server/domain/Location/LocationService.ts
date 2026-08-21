@@ -1,4 +1,5 @@
 import { ILocationGateway } from "../../ports/ILocationGateway";
+
 import { LocationMapper } from "./Location.mapper";
 import {
   LocationDomain,
@@ -21,8 +22,9 @@ export class LocationService {
       offset,
     });
 
-    const detailDTOs =
-      await this.locationGateway.getLocationDetailsInParallel(listDTO.results);
+    const detailDTOs = await this.locationGateway.getLocationDetailsInParallel(
+      listDTO.results,
+    );
 
     const locations: LocationDomain[] = detailDTOs.map((dto, idx) =>
       LocationMapper.toDomain(dto, offset + idx + 1),

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { POKEMON_TYPE_COLORS } from "@/client/shared/lib";
 
 export interface PokemonTypeFilterProps {

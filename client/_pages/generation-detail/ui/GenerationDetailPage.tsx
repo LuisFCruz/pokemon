@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import React, { useState, useMemo } from "react";
+
 import { useGetGenerationDetail } from "@/client/entities/generation";
 import { PokemonDomain } from "@/client/entities/pokemon";
-import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
 import { PokemonSearch, PokemonTypeFilter } from "@/client/features";
 import { Spinner, Button, Badge } from "@/client/shared/ui";
+import { PokemonGrid, PokemonDetailModal } from "@/client/widgets";
 
 export interface GenerationDetailPageProps {
   id: string;
@@ -21,8 +22,13 @@ export const GenerationDetailPage: React.FC<GenerationDetailPageProps> = ({
     null,
   );
 
-  const { data: generation, isLoading, isError, error, refetch } =
-    useGetGenerationDetail(id);
+  const {
+    data: generation,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useGetGenerationDetail(id);
 
   const filteredPokemons = useMemo(() => {
     if (!generation?.pokemons) return [];
@@ -92,7 +98,9 @@ export const GenerationDetailPage: React.FC<GenerationDetailPageProps> = ({
                   {generation.name.replace("-", " ")}
                 </h1>
                 <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">
-                  Explorando os {generation.speciesCount} Pokémons e {generation.movesCount} novos golpes introduzidos nesta geração.
+                  Explorando os {generation.speciesCount} Pokémons e{" "}
+                  {generation.movesCount} novos golpes introduzidos nesta
+                  geração.
                 </p>
               </div>
 

@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { locationApi } from "../api/locationApi";
-import {
-  GetLocationListParams,
-  PaginatedLocationResponse,
-} from "./types";
+
+import { GetLocationListParams, PaginatedLocationResponse } from "./types";
 
 export function useGetLocationList(params: GetLocationListParams = {}) {
   return useQuery<PaginatedLocationResponse, Error>({

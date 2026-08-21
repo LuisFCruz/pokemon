@@ -1,6 +1,8 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
 import { Spinner } from "@/client/shared/ui";
+
 import { useGetPokemonEvolutions } from "../../model/useGetPokemonEvolutions";
 
 export interface PokemonEvolutionChainProps {
@@ -14,7 +16,7 @@ export const PokemonEvolutionChain: React.FC<PokemonEvolutionChainProps> = ({
 }) => {
   const { data: evolutionsData, isLoading } = useGetPokemonEvolutions(
     currentPokemonId,
-    isOpen
+    isOpen,
   );
 
   const evolutions = evolutionsData?.evolutions || [];

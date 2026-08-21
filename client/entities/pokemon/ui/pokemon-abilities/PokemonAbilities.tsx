@@ -4,7 +4,9 @@ export interface PokemonAbilitiesProps {
   abilities: string[];
 }
 
-export const PokemonAbilities: React.FC<PokemonAbilitiesProps> = ({ abilities }) => {
+export const PokemonAbilities: React.FC<PokemonAbilitiesProps> = ({
+  abilities,
+}) => {
   if (!abilities || abilities.length === 0) return null;
 
   return (

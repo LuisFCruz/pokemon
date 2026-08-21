@@ -4,8 +4,8 @@ import {
   PokeApiGenerationListDTO,
 } from "../../ports/IGenerationGateway";
 import { PokeApiNamedResource } from "../../ports/IPokemonGateway";
-import { NotFoundError } from "../../shared/errors/NotFoundError";
 import { GatewayError } from "../../shared/errors/GatewayError";
+import { NotFoundError } from "../../shared/errors/NotFoundError";
 
 export class PokeApiGenerationAdapter implements IGenerationGateway {
   private readonly baseUrl: string;
@@ -48,7 +48,9 @@ export class PokeApiGenerationAdapter implements IGenerationGateway {
       });
 
       if (response.status === 404) {
-        throw new NotFoundError(`Generation '${idOrName}' not found in PokeAPI.`);
+        throw new NotFoundError(
+          `Generation '${idOrName}' not found in PokeAPI.`,
+        );
       }
 
       if (!response.ok) {

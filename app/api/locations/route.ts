@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { locationService } from "@/server/container";
 
 export async function GET(request: Request) {

@@ -1,3 +1,4 @@
+import { PokemonListQueryParams } from "../../domain/Pokemon/Pokemon.types";
 import {
   IPokemonGateway,
   PokeApiEvolutionChainDTO,
@@ -6,9 +7,8 @@ import {
   PokeApiPokemonListDTO,
   PokeApiSpeciesDTO,
 } from "../../ports/IPokemonGateway";
-import { PokemonListQueryParams } from "../../domain/Pokemon/Pokemon.types";
-import { NotFoundError } from "../../shared/errors/NotFoundError";
 import { GatewayError } from "../../shared/errors/GatewayError";
+import { NotFoundError } from "../../shared/errors/NotFoundError";
 
 export class PokeApiAdapter implements IPokemonGateway {
   private readonly baseUrl: string;
@@ -143,9 +143,7 @@ export class PokeApiAdapter implements IPokemonGateway {
       });
 
       if (response.status === 404) {
-        throw new NotFoundError(
-          `Evolution chain '${chainUrlOrId}' not found.`,
-        );
+        throw new NotFoundError(`Evolution chain '${chainUrlOrId}' not found.`);
       }
 
       if (!response.ok) {

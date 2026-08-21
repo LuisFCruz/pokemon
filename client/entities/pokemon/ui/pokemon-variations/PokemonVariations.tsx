@@ -1,6 +1,8 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
 import { Spinner } from "@/client/shared/ui";
+
 import { useGetPokemonVariations } from "../../model/useGetPokemonVariations";
 import { PokemonTypeBadge } from "../pokemon-type-badge/PokemonTypeBadge";
 
@@ -15,7 +17,7 @@ export const PokemonVariations: React.FC<PokemonVariationsProps> = ({
 }) => {
   const { data: variationsData, isLoading } = useGetPokemonVariations(
     currentPokemonId,
-    isOpen
+    isOpen,
   );
 
   const variations = variationsData?.variations || [];
